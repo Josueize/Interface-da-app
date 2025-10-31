@@ -13,37 +13,21 @@ document.getElementById("cep").addEventListener("blur", (evento)=> {
             document.getElementById('logradouro').value = data.logradouro;
             document.getElementById('bairro').value = data.bairro;
             document.getElementById('cidade').value = data.localidade;
-            document.getElementById('estado').value = data.uf;
+            document.getElementById('estado').value = data.uf;                 
 
-            const userData = {
-                logradouro: logradouro,
-                bairro: bairro,
-                cidade: cidade,
-                estado: estado
-            };
-            
+            localStorage.setItem("registeredUser");
+            localStorage.setItem("logradouro:{}","bairro:{}","cidade:{}","estado:{}", JSON.stringify({ theme: 'dark', notifications: true }));
+           
+            const registeredUser = localStorage.getItem("logradouro:{}","bairro:{}","cidade:{}","estado:{}");
+            const userSettings = JSON.parse(localStorage.getItem("logradouro:{}","bairro:{}","cidade:{}","estado:{}"));
+        
+            cadastro.textContent = registeredUser === "cep" ? 'registeredUser' : ')';   
 
-            const userDataString = JSON.stringify(userData);
-
-            localStorage.setItem('registeredUser', userDataString);
-            cadastro.textContent = userData === "cep" ? 'userData' : ')';
-
-            document.addEventListener('DOMContentLoaded',() =>{
-                const datasalvo = localStorage.getItem("UserData");
-                if(datasalvo === userData){
-                    document.body.classList.add("userData");
-                    datasalvo.textContent = 'userData';
-
-                }
-            })      
-            
-
-            
-        }else{
+            }else{
             alert("CEP nao encontrado.")
         }     
     })
-    .catch(error => console.error("Error ao buscar o CEP: ", error))
+    .catch(error => console.error("Error ao buscar o CEP: ", error));
 
     })
 
