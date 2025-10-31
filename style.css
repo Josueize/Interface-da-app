@@ -40,20 +40,14 @@ form{
     
 }
 
-button1{
+button{
     background-color: orangered;
     border-radius: 5px;
     margin-top: 20px;
     padding: 4px;
 }
 
-button2{
-    background-color: blue;
-    border-radius: 5px;
-    margin-top: 3px;
-    padding: 4px;
-    
-}
+
 
 input{
     padding: 6px;
