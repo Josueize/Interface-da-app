@@ -13,22 +13,40 @@ document.getElementById("cep").addEventListener("blur", (evento)=> {
             document.getElementById('logradouro').value = data.logradouro;
             document.getElementById('bairro').value = data.bairro;
             document.getElementById('cidade').value = data.localidade;
-            document.getElementById('estado').value = data.uf;                 
-
-            localStorage.setItem("registeredUser");
-            localStorage.setItem("logradouro:{}","bairro:{}","cidade:{}","estado:{}", JSON.stringify({ theme: 'dark', notifications: true }));
-           
-            const registeredUser = localStorage.getItem("logradouro:{}","bairro:{}","cidade:{}","estado:{}");
-            const userSettings = JSON.parse(localStorage.getItem("logradouro:{}","bairro:{}","cidade:{}","estado:{}"));
-        
-            cadastro.textContent = registeredUser === "cep" ? 'registeredUser' : ')';   
-
-            }else{
+            document.getElementById('estado').value = data.uf;
+            
+        }else{
             alert("CEP nao encontrado.")
-        }     
+        }
+
+        const registeredUserAtual = localStorage.getItem("registeredUser");
+
     })
-    .catch(error => console.error("Error ao buscar o CEP: ", error));
+    .catch(error => console.error("Error ao buscar o CEP: ", error))
 
     })
 
-    
+     const botaoRegistered = document.getElementById("botaoRegistered");
+
+     botaoRegistered.addEventListener("click", ()=> {
+    const registeredAtual = localStorage.getItem("registeredUser");
+    const novoRegistered = registeredAtual === "logroudou";
+
+    document.body.classList.toggle(novoRegistered);
+
+    localStorage.setItem("registeredUser", novoRegistered);
+
+    botaoRegistered.textContent = novoRegistered === "logradouro" ? '*' : ')';
+
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const registeredSalvo = localStorage.getItem("registeredUser");
+    if(registeredSalvo === "logradouro"){
+        document.body.classList.add("logradouro");
+        botaoRegistered.textContent = '*';
+    }else{
+        botaoRegistered.textContent = ')';
+    }
+})
