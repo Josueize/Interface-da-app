@@ -34,7 +34,7 @@ document.getElementById("cep").addEventListener("blur", (evento)=> {
 
     document.body.classList.toggle(novoRegistered);
 
-    localStorage.setItem("registeredUser", novoRegistered);
+    localStorage.setItem ("logradouro", "bairro", "cidade", "estado" novoRegistered)
 
     botaoRegistered.textContent = novoRegistered === "logradouro" ? '*' : ')';
 
