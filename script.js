@@ -1,4 +1,6 @@
-document.getElementById("cep").addEventListener("blur", (evento)=> {
+const botao = document.getElementById("botao");
+
+document.getElementById("cep").addEventListener("blur", (evento) => {
     const elemento = evento.target;
     const cepInformado = elemento.value;
 
@@ -26,27 +28,33 @@ document.getElementById("cep").addEventListener("blur", (evento)=> {
 
     })
 
-     const botaoRegistered = document.getElementById("botaoRegistered");
+     botao.addEventListener( "click", () => {
+        var logradouro = document.getElementById('logradouro').value;
+        var bairro = document.getElementById('bairro').value;
+        var cidade = document.getElementById('cidade').value;
+        var estado = document.getElementById('estado').value;
+        var cep = document.getElementById('cep').value;
+        var numero = document.getElementById('numero').value;
 
-     botaoRegistered.addEventListener("click", ()=> {
-    const registeredAtual = localStorage.getItem("registeredUser");
-    const novoRegistered = registeredAtual === "logroudou";
+        localStorage.setItem("logradouro", logradouro);
+        localStorage.setItem("bairro", bairro);
+        localStorage.setItem("cidade", cidade);
+        localStorage.setItem("estado", estado);
+        localStorage.setItem("cep", cep);
+        localStorage.setItem("numero", numero);
+ 
+     })
 
-    document.body.classList.toggle(novoRegistered);
+     document.addEventListener('DOMContentLoaded', () => {
+        var cep = localStorage.getItem("cep");
 
-    localStorage.setItem ("logradouro", "bairro", "cidade", "estado" novoRegistered)
-
-    botaoRegistered.textContent = novoRegistered === "logradouro" ? '*' : ')';
-
-})
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    const registeredSalvo = localStorage.getItem("registeredUser");
-    if(registeredSalvo === "logradouro"){
-        document.body.classList.add("logradouro");
-        botaoRegistered.textContent = '*';
-    }else{
-        botaoRegistered.textContent = ')';
-    }
-})
+        if (cep) {
+            document.getElementById("cep").value = cep;
+            document.getElementById("logradouro").value = localStorage.getItem("lagradouro");
+            document.getElementById("bairro").value = localStorage.getItem("bairro");
+            document.getElementById("cidade").value = localStorage.getItem("cidade");
+            document.getElementById("estado").value = localStorage.getItem("estado");
+            document.getElementById("numero").value = localStorage.getItem("numero");
+        }
+     })
+        
