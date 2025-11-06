@@ -50,7 +50,7 @@ document.getElementById("cep").addEventListener("blur", (evento) => {
 
         if (cep) {
             document.getElementById("cep").value = cep;
-            document.getElementById("logradouro").value = localStorage.getItem("lagradouro");
+            document.getElementById("logradouro").value = localStorage.getItem("logradouro");
             document.getElementById("bairro").value = localStorage.getItem("bairro");
             document.getElementById("cidade").value = localStorage.getItem("cidade");
             document.getElementById("estado").value = localStorage.getItem("estado");
